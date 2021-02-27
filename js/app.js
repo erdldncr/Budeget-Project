@@ -132,6 +132,15 @@ let expense=this.itemList.filter(item=>item['id']==id)
   }
   ///delete expense
   deleteExpense(item){
+    ///elemeani id si ile sectim heralde
+    let id=parseInt(item.dataset.id);
+    ////elemannin asil parentini buldum anlamak icin 104.un satirin ustune bak
+    let parent= item.parentElement.parentElement.parentElement;
+    ///burada elemani domdan sildim
+    this.expenseList.removeChild(parent)
+     ///remove item from the item list element
+     this.itemList =this.itemList.filter(item=>item['id']!==id)
+     this.showBalance()
 
   }
 
