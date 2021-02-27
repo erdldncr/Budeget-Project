@@ -76,7 +76,9 @@ class UI {
      this.itemID++;
      this.itemList.push(expense)
      this.addExpense(expense);
-     //// show balance
+     this.showBalance()
+     
+    
    }
 
   }
@@ -104,13 +106,19 @@ class UI {
   }
   ////total expense
   totalExpense(){
-
+   let total=0
+   if(this.itemList.length>0){
+    total=this.itemList.reduce((sum,item)=>sum+item['amount'],0)
+   }
+   this.expenseAmount.textContent=total
+    return  total
   }
 
 
 }
 
-const budgetForm=document.getElementById('budget-form');
+function showBudget(){
+  const budgetForm=document.getElementById('budget-form');
 const expenseForm=document.getElementById("expense-form");
 const expenseList=document.getElementById("expense-list");
 
@@ -125,9 +133,10 @@ ui.submitBudgetForm()
 })
 //expense Form submit
 expenseForm.addEventListener('submit',function(event){
+ 
   event.preventDefault()
   ui.submitExpenseForm()
-
+  console.log()
 
 })
 //expense click
@@ -135,5 +144,6 @@ expenseList.addEventListener('click',function(){
   
 
 })
+}
 
 
