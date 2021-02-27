@@ -34,9 +34,29 @@ class UI {
   }
   ///show balance
   showBalance(){
-    const expense=this.total.expense()
+    const expense=this.totalExpense()
+    const total= parseInt(this.budgetAmount.textContent)-expense
+    this.balanceAmount.textContent=total
+    if(total<0){
+      this.balance.classList.remove('showGreen','showBlack')
+      this.balance.classList.add('showRed')
+     
+    }else if(total==0){
+    
+        this.balance.classList.remove('showGreen','showRed')
+        this.balance.classList.add('showBlack')
+      
+    }else{
+      this.balance.classList.remove('showRed','showBlack')
+      this.balance.classList.add('showGreen')
+    
+    }
+    
   }
   ////total expense
+  totalExpense(){
+    return 400
+  }
 
 }
 
