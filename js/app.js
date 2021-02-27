@@ -53,10 +53,38 @@ class UI {
     }
     
   }
+  //// submit Expense Form
+  submitExpenseForm(){
+   const expenseValue=this.expenseInput.value
+   const amountValue=this.amountInput.value
+   if(expenseValue===''|| amountValue===''||amountValue<0){
+    this.expenseFeedback.classList.add('showItem')
+    this.expenseFeedback.innerHTML=`<p>It can't be empty</p>`
+    const self=this
+    setTimeout(function(){
+      self.expenseFeedback.classList.remove('showItem')
+    },4000)
+   }else{
+     let amount= Number(amountValue)
+     this.expenseInput.value=''
+     this.amountInput.value=''
+     let expense={
+       id :this.itemID,
+       title:expenseValue,
+       amount:amount
+     }
+     this.itemID++;
+     this.itemList.push(expense)
+     this.addExpense(expense);
+     //// show balance
+   }
+
+  }
   ////total expense
   totalExpense(){
-    return 400
+
   }
+
 
 }
 
@@ -76,6 +104,7 @@ ui.submitBudgetForm()
 //expense Form submit
 expenseForm.addEventListener('submit',function(event){
   event.preventDefault()
+  ui.submitExpenseForm()
 
 
 })
