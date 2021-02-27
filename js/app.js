@@ -115,7 +115,20 @@ class UI {
   }
   //edit expense
   editExpense(item){
+    ///elemeani id si ile sectim heralde
+    let id=parseInt(item.dataset.id);
+    ////elemannin asil parentini buldum anlamak icin 104.un satirin ustune bak
+    let parent= item.parentElement.parentElement.parentElement;
+    ///burada elemani domdan sildim
+    this.expenseList.removeChild(parent)
+    ///expense elementi degerleri icinde tutacak ki ben edite bastgimda elemanlari tutayims onra sonda geri formun icinde gosterebilrym
+let expense=this.itemList.filter(item=>item['id']==id)
+    this.expenseInput.value=expense[0]['title']
+    this.amountInput.value=expense[0]['amount']
 
+    ///remove item from the item list element
+    this.itemList =this.itemList.filter(item=>item['id']!==id)
+    this.showBalance()
   }
   ///delete expense
   deleteExpense(item){
