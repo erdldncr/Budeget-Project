@@ -113,6 +113,14 @@ class UI {
    this.expenseAmount.textContent=total
     return  total
   }
+  //edit expense
+  editExpense(item){
+
+  }
+  ///delete expense
+  deleteExpense(item){
+
+  }
 
 
 }
@@ -140,8 +148,14 @@ expenseForm.addEventListener('submit',function(event){
 
 })
 //expense click
-expenseList.addEventListener('click',function(){
-  
+//////eventliste tikladigimda eventlistener calisacak
+expenseList.addEventListener('click',function(event){
+  //tikladigim yeri event.taget ile buluyrm ve parentinin classlisti checke diyrum
+  if(event.target.parentElement.classList.contains('edit-icon')){
+    ui.editExpense(event.target.parentElement)
+  }else if(event.target.parentElement.classList.contains('delete-icon')){
+    ui.deleteExpense(event.target.parentElement)
+  }
 
 })
 }
